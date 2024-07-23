@@ -5,7 +5,7 @@ let _sizes = {
 	cols: 18,
 }
 let _colors = ['#00AC62', "#94EBDE", "#FCF1E7", "#FF88AE", "#E8A9FF", "#F9D5F5", "#FDA05C", "#F42E46", "#FEA490"];
-let _opacity = [0, 0.2, 0.4, 0.6, 0.8, 1];
+let _opacity = [0, 0.2, 0.4, 0.6, 0.8, 1, 0, 0, 0, 0.2, 0.2, 0.2];
 let _speed = {
 	pixel: 0.1,
 	staggerPixel: 0.05
