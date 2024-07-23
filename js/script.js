@@ -28,25 +28,25 @@ _contents.forEach(content => {
 	const tlCols = gsap.timeline({
 		scrollTrigger: {
 			trigger: content,
-			start: 'top 70%',
-			end: 'bottom 70%',
+			start: 'top 80%',
+			end: 'bottom 60%',
 			scrub: 3,
 			// markers: true
 		}
 	});
 	tlCols
 		.to(_colPixels, { 
-			duration: 1,
+			duration: 2,
 			stagger: 1,
 			autoAlpha: 1,
 	})
 		.to(_colPixels, { 
-			duration: 1,
+			duration: 2,
 			stagger: 1,
 			autoAlpha: 0,
 	}, "<+=" + 4)
 		.to(_split.chars, { 
-			duration: 1,
+			duration: 2,
 			autoAlpha: 1,
 			stagger: 1
 	}, "<+=" + 0.5);
