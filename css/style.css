@@ -1,13 +1,39 @@
 :root {
-	--green-1: #00AC62;
-	--green-2: #34C693;
-	--green-3: #86E990;
-
 	--logo-0: 0;
 	--logo-1: 0.1;
 	--logo-2: 0.4;
 	--logo-3: 1;
 }
+
+.unload {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	opacity: 0;
+	visibility: hidden;
+	/* display: flex;
+	overflow: hidden; */
+}
+.unload:before {
+	position: absolute;
+	content: '';
+	display: block;
+	top: 0;
+	left: 0;
+	background: grey;
+	opacity: 1;
+	display: none;
+}
+.unload__square {
+	width: 10%;
+	height: 10%;
+	opacity: 0;
+	background: var(--bg-color-loader);
+}
+
 
 body {
 	font-family: "Roboto", sans-serif;
