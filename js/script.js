@@ -28,10 +28,10 @@ _contents.forEach(content => {
 	const tlCols = gsap.timeline({
 		scrollTrigger: {
 			trigger: content,
-			start: 'top 80%',
+			start: 'top 90%',
 			end: 'bottom 60%',
-			scrub: 3,
-			// markers: true
+			scrub: 1,
+			markers: true
 		}
 	});
 	tlCols
