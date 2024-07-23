@@ -31,7 +31,7 @@ _contents.forEach(content => {
 			start: 'top 70%',
 			end: 'bottom 70%',
 			scrub: 1,
-			// markers: true
+			markers: true
 		}
 	});
 	tlCols
@@ -49,7 +49,7 @@ _contents.forEach(content => {
 		duration: 1,
 		autoAlpha: 1,
 		stagger: 1
-	}, "<+=" + 2.5);
+	}, "<+=" + 0.5);
 
 	
 	// Chars Animation
