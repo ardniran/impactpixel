@@ -1,5 +1,61 @@
 gsap.registerPlugin(SplitText);
 
+// UNLOADER
+let _unloadDom = document.body.querySelector('.unload');
+let _exitDom = document.body.querySelector('#exit');
+let _colorsLoader = ['#D5F3E8', "#FBECDF", "#D6FFFE"];
+
+
+buildGridLoader({grid: [10, 10], className: "unload__square", width: 1000, gutter: 0, parent: ".unload"});
+
+// _exitDom.addEventListener('click', unloadPage);
+
+function unloadPage() {
+	gsap.set(".unload", {autoAlpha: 1});
+	gsap.to(".unload__square", 
+		{
+			duration: 0.2,
+			autoAlpha: 1,
+			onComplete: () => {
+				console.log('Redirect page HERE');
+			},
+			stagger: {
+				amount: .25,
+				grid: 'auto',
+				ease: "steps(2)",
+				from: 'random'
+			}
+		}
+	);
+}
+
+function buildGridLoader(vars) {
+	vars = vars || {};
+	var container = document.createElement("div"),
+	rows = vars.grid[0] || 5,
+	cols = vars.grid[1] || 5,
+	width = vars.width || 100,
+	gutter = vars.gutter || 1,
+	className = vars.className || "",
+	w = (width - cols * gutter) / cols,
+	parent = (typeof(vars.parent) === "string") ? document.querySelector(vars.parent) : vars.parent ? vars.parent : document.body,
+	css = "display: inline-block; margin: 0 " + 0 + "% " + 0 + "% 0; width: " + 10 + "%;",
+	l = rows * cols,
+	i, box;
+	for (i = 0; i < l; i++) {
+		box = document.createElement("div");
+		box.style.cssText = css;
+		box.setAttribute("class", className);
+		box.style.setProperty('--bg-color-loader', _colorsLoader[Math.floor(Math.random() * _colorsLoader.length)]);
+		container.appendChild(box);
+	}
+	container.style.cssText = "width:100vw; height: 100vh; line-height: 0; padding:" + gutter + "px 0 0 " + gutter + "px; display:flex;flex-wrap: wrap;";
+	parent.appendChild(container);
+	return container;
+}
+// END UNLOADER
+
+
 // LOGO Square Animation
 let _logoDom = document.body.querySelector('.logo-anim');
 let _logoPixels = _logoDom.querySelectorAll('.logo-anim__pixel');
@@ -34,7 +90,7 @@ tlLogo
 
 
 // TEXT Animation
-let _contents = document.body.querySelectorAll('.text-to-anim');
+let _contents = document.body.querySelectorAll('.content');
 let _colorsPixelsText = ['#00AC62', "#94EBDE", "#FCF1E7", "#FF88AE", "#E8A9FF", "#F9D5F5", "#FDA05C", "#F42E46", "#FEA490"];
 let _opacity = [0, 0.2, 0.4, 0.6, 0.8, 1, 0, 0, 0, 0.2, 0.2, 0.2];
 let _speed = {
