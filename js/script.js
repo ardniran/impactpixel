@@ -9,9 +9,9 @@ let tlLogo = gsap.timeline({
 });
 tlLogo
 	.to(_logoPixels, {
-		duration: 0.5,
-		scale: 0.8,
-		ease: "power2.in",
+		duration: 0.7,
+		scale: 0.5,
+		ease: "power4.in",
 		stagger: {
 			grid: [5,5],
 			from: "center",
@@ -19,9 +19,9 @@ tlLogo
 		}
 	})
 	.to(_logoPixels, {
-		duration: 0.5,
+		duration: 0.7,
 		scale: 1,
-		ease: "power2.out",
+		ease: "power4.out",
 		stagger: {
 			grid: [5,5],
 			from: "center",
@@ -33,8 +33,6 @@ tlLogo
 
 
 // TEXT Animation
-
-
 let _contents = document.body.querySelectorAll('.content');
 let _colors = ['#00AC62', "#94EBDE", "#FCF1E7", "#FF88AE", "#E8A9FF", "#F9D5F5", "#FDA05C", "#F42E46", "#FEA490"];
 let _opacity = [0, 0.2, 0.4, 0.6, 0.8, 1, 0, 0, 0, 0.2, 0.2, 0.2];
