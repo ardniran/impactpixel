@@ -30,7 +30,7 @@ _contents.forEach(content => {
 			trigger: content,
 			start: 'top 70%',
 			end: 'bottom 70%',
-			scrub: 1,
+			scrub: 3,
 			// markers: true
 		}
 	});
@@ -44,30 +44,12 @@ _contents.forEach(content => {
 			duration: 1,
 			stagger: 1,
 			autoAlpha: 0,
-	}, "<+=" + 2)
+	}, "<+=" + 4)
 		.to(_split.chars, { 
-		duration: 1,
-		autoAlpha: 1,
-		stagger: 1
+			duration: 1,
+			autoAlpha: 1,
+			stagger: 1
 	}, "<+=" + 0.5);
-
-	
-	// Chars Animation
-	// const tlChars = gsap.timeline({
-	// 	scrollTrigger: {
-	// 		trigger: content,
-	// 		start: 'top 70%',
-	// 		end: 'bottom 70%',
-	// 		scrub: 1,
-	// 		// markers: true
-	// 	}
-	// });
-	
-	// tlChars.from(_split.chars, { 
-	// 	duration: 1,
-	// 	autoAlpha: 0,
-	// 	stagger: 1
-	// });
 });
 
 
