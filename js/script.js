@@ -1,5 +1,40 @@
 gsap.registerPlugin(SplitText);
 
+// LOGO Square Animation
+let _logoDom = document.body.querySelector('.logo-anim');
+let _logoPixels = _logoDom.querySelectorAll('.logo-anim__pixel');
+let tlLogo = gsap.timeline({
+	repeat: -1,
+	repeatDelay: 8
+});
+tlLogo
+	.to(_logoPixels, {
+		duration: 0.5,
+		scale: 0.8,
+		ease: "power2.in",
+		stagger: {
+			grid: [5,5],
+			from: "center",
+			amount: .5,
+		}
+	})
+	.to(_logoPixels, {
+		duration: 0.5,
+		scale: 1,
+		ease: "power2.out",
+		stagger: {
+			grid: [5,5],
+			from: "center",
+			amount: .5,
+		}
+	}, "<+=0.7");
+
+
+
+
+// TEXT Animation
+
+
 let _contents = document.body.querySelectorAll('.content');
 let _colors = ['#00AC62', "#94EBDE", "#FCF1E7", "#FF88AE", "#E8A9FF", "#F9D5F5", "#FDA05C", "#F42E46", "#FEA490"];
 let _opacity = [0, 0.2, 0.4, 0.6, 0.8, 1, 0, 0, 0, 0.2, 0.2, 0.2];
@@ -76,55 +111,4 @@ function createPixelsLines(words) {
 
 	// Inject New DOM
 	words.appendChild(pixelsContainer);
-}
-
-// a key map of allowed keys
-var allowedKeys = {
-	37: 'left',
-	38: 'up',
-	39: 'right',
-	40: 'down',
-	65: 'a',
-	66: 'b'
-  };
-  
-// the 'official' Konami Code sequence
-var konamiCode = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'b', 'a'];
-
-// a variable to remember the 'position' the user has reached so far.
-var konamiCodePosition = 0;
-
-// add keydown event listener
-document.addEventListener('keydown', function(e) {
-	// get the value of the key code from the key map
-	var key = allowedKeys[e.keyCode];
-	// get the value of the required key from the konami code
-	var requiredKey = konamiCode[konamiCodePosition];
-  
-	// compare the key with the required key
-	if (key == requiredKey) {
-  
-	  // move to the next key in the konami code sequence
-	  konamiCodePosition++;
-  
-	  // if the last key is reached, activate cheats
-	  if (konamiCodePosition == konamiCode.length) {
-		activateCheats();
-		konamiCodePosition = 0;
-	  }
-	} else {
-	  konamiCodePosition = 0;
-	}
-  });
-
-
-function activateCheats() {
-	const _colPixels = document.body.querySelectorAll('.col-pixel');
-	const _pixels = document.body.querySelectorAll('.col-pixel');
-	
-	gsap.to(_colPixels, {autoAlpha: 1})
-	gsap.to(_pixels, {scale: 3, stagger: {
-		amount: 2,
-		from: "random"
-	  }})
 }
