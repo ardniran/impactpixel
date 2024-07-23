@@ -1,14 +1,14 @@
 gsap.registerPlugin(SplitText);
 
 let _contents = document.body.querySelectorAll('.content');
-let _sizes = {
-	cols: 18,
-}
 let _colors = ['#00AC62', "#94EBDE", "#FCF1E7", "#FF88AE", "#E8A9FF", "#F9D5F5", "#FDA05C", "#F42E46", "#FEA490"];
 let _opacity = [0, 0.2, 0.4, 0.6, 0.8, 1, 0, 0, 0, 0.2, 0.2, 0.2];
 let _speed = {
-	pixel: 0.1,
-	staggerPixel: 0.05
+	duration: 0.1,
+	staggerCols: 1,
+	staggerPixel: 1,
+	delayCols: 4,
+	delayPixel: 0.05,
 }
 
 _contents.forEach(content => {
@@ -22,34 +22,33 @@ _contents.forEach(content => {
 		createPixelsLines(words);
 	});
 
-
 	// Pixel's Column Animation
 	_colPixels = content.querySelectorAll('.col-pixel');
 	const tlCols = gsap.timeline({
 		scrollTrigger: {
 			trigger: content,
-			start: 'top 90%',
-			end: 'bottom 60%',
+			start: 'top 95%',
+			end: 'bottom 65%',
 			scrub: 1,
-			markers: true
+			// markers: true
 		}
 	});
 	tlCols
 		.to(_colPixels, { 
-			duration: 2,
-			stagger: 1,
 			autoAlpha: 1,
+			duration: _speed.duration,
+			stagger: _speed.staggerCols,
 	})
 		.to(_colPixels, { 
-			duration: 2,
-			stagger: 1,
 			autoAlpha: 0,
-	}, "<+=" + 4)
+			duration: _speed.duration,
+			stagger: _speed.staggerCols,
+	}, "<+=" + _speed.delayCols)
 		.to(_split.chars, { 
-			duration: 2,
 			autoAlpha: 1,
-			stagger: 1
-	}, "<+=" + 0.5);
+			duration: _speed.duration,
+			stagger: _speed.staggerPixel,
+	}, "<+=" + _speed.delayPixel);
 });
 
 
@@ -77,4 +76,55 @@ function createPixelsLines(words) {
 
 	// Inject New DOM
 	words.appendChild(pixelsContainer);
+}
+
+// a key map of allowed keys
+var allowedKeys = {
+	37: 'left',
+	38: 'up',
+	39: 'right',
+	40: 'down',
+	65: 'a',
+	66: 'b'
+  };
+  
+// the 'official' Konami Code sequence
+var konamiCode = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'b', 'a'];
+
+// a variable to remember the 'position' the user has reached so far.
+var konamiCodePosition = 0;
+
+// add keydown event listener
+document.addEventListener('keydown', function(e) {
+	// get the value of the key code from the key map
+	var key = allowedKeys[e.keyCode];
+	// get the value of the required key from the konami code
+	var requiredKey = konamiCode[konamiCodePosition];
+  
+	// compare the key with the required key
+	if (key == requiredKey) {
+  
+	  // move to the next key in the konami code sequence
+	  konamiCodePosition++;
+  
+	  // if the last key is reached, activate cheats
+	  if (konamiCodePosition == konamiCode.length) {
+		activateCheats();
+		konamiCodePosition = 0;
+	  }
+	} else {
+	  konamiCodePosition = 0;
+	}
+  });
+
+
+function activateCheats() {
+	const _colPixels = document.body.querySelectorAll('.col-pixel');
+	const _pixels = document.body.querySelectorAll('.col-pixel');
+	
+	gsap.to(_colPixels, {autoAlpha: 1})
+	gsap.to(_pixels, {scale: 3, stagger: {
+		amount: 2,
+		from: "random"
+	  }})
 }
